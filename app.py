@@ -17,7 +17,7 @@ tarifler = [
     {
         "isim": "Sütlaç",
         "malzemeler": ["pirinç", "süt", "şeker", "vanilya", "tarçın"],
-        "yapilis": "Pirinci haşlayın, süte ekleyin. Şeker ve vanilya ekleyip kaynatın. Kaselere döküp tarçın serpin."
+        "yapilis": "Sadece bir kez sudan geçirerek yıkadığınız pirinci tencereye alın ve 2 su bardağı sıcak suyu ekleyerek kısık ateşte pişirmeye başlayın.            Bu sırada ara ara nazikçe karıştırın.Pirinç, suyu çekip lapa hale gelince üzerine sütü ilave edin.Karıştırın ve süt kaynayana kadar ara ara karıştırmaya devam edin. Kaynadıktan sonra altını kısın, 8-10 dakika daha bu şekilde karıştırarak kısık ateşte pişirin.Ardından şekeri ekleyin, karıştırın. Tekrar kaynamasını bekleyin ve 4-5 dakika daha da kısık ateşte bu şekilde kaynatın. Nişastayı eklemek için bir kabın içerisine alın, 1 çay bardağı suyla karıştırın."
     },
     {
         "isim": "Künefe",
@@ -728,7 +728,6 @@ def tarif_ekle():
         yapilis = request.form.get('yapilis', '').strip()
 
 
-        # Hata kontrolü
         hata_mesajlari = []
         if not isim:
             hata_mesajlari.append("Tarif ismi boş olamaz.")
@@ -740,7 +739,6 @@ def tarif_ekle():
         if hata_mesajlari:
             return render_template('tarif_ekle.html', hata_mesajlari=hata_mesajlari)
         
-        # Yeni tarif ekleme (class yapısında)
         yeni_tarif = Tarif(isim, malzemeler, yapilis)
         yeni_tarifler.append(yeni_tarif)
         return redirect(url_for('index'))
