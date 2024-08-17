@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarif Bulucu ve Ekleme</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tarif Bulucu ve Ekleme</h1>
+        
+        <!-- Tarif Bulma Bölümü -->
+        <div class="section">
+            <h2>Tarif Bulucu</h2>
+            <form method="post" action="/">
+                <label for="malzemeler">Elinizdeki malzemeleri virgül ile ayırarak girin:</label>
+                <input type="text" id="malzemeler" name="malzemeler" required>
+                <button type="submit">Tarifleri Göster</button>
+            </form>
+            {% if mesaj %}
+                <p class="message">{{ mesaj }}</p>
+            {% endif %}
+        </div>
+        
+        <!-- Tarif Ekleme Bölümü -->
+        <div class="section">
+            <h2>Tarif Ekle</h2>
+            <form method="post" action="/tarif-ekle">
+                <label for="isim">Tarif İsmi:</label>
+                <input type="text" id="isim" name="isim" required>
+                
+                <label for="malzemeler">Malzemeler (virgülle ayırarak girin):</label>
+                <input type="text" id="malzemeler" name="malzemeler" required>
+                
+                <label for="yapilis">Tarifin Yapılışı:</label>
+                <textarea id="yapilis" name="yapilis" required></textarea>
+                
+                <button type="submit">Tarifi Ekle</button>
+            </form>
+            
+            {% if hata_mesajlari %}
+                <div class="error-messages">
+                    <ul>
+                        {% for mesaj in hata_mesajlari %}
+                            <li>{{ mesaj }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Ekibimiz Bölümü -->
+        <div class="section">
+            <h2>Ekibimiz</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Ekibimiz Üye 1">
+                    <h3>Emine Sultan Albayrak</h3>
+                    <p>Yazılım Geliştirici</p>
+                    <p>.......Kişisel Bilgiler yer alacak.......</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Ekibimiz Üye 2">
+                    <h3>Batuhan Taşdelen</h3>
+                    <p>Tasarımcı</p>
+                    <p>.......Kişisel Bilgiler yer alacak.......</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
